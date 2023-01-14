@@ -1,0 +1,19 @@
+{
+  "name": "roll-dice",
+  "version": "1.0.0",
+  "description": "Simple dice game",
+  "keywords": ["angular", "nodejs", "netlify"],
+  "author": "Eduardo Souza",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  },
+  "scripts": {
+    "start": "concurrently \"npm run serve:client\" \"npm run serve:server\"",
+    "serve:client": "cd client && npm start",
+    "serve:server": "cd server && npm start",
+    "build:client": "cd client && npm run build:ci",
+    "build:server": "cd server && npm run build:ci",
+    "build": "npm run build:client && npm run build:server"
+  }
+}

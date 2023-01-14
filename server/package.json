@@ -1,0 +1,19 @@
+{
+    "name": "roll-dice-server",
+    "version": "1.0.0",
+    "description": "Simple dice game",
+    "keywords": ["angular", "nodejs", "netlify"],
+    "author": "Eduardo Souza",
+    "license": "MIT",
+    "dependencies": {
+        "express": "^4.18.2",
+        "netlify-lambda": "^2.0.15",
+        "serverless-http": "^3.1.1"
+      },
+      "scripts": {
+        "start": "netlify-lambda serve src",
+        "build:ci": "netlify-lambda build src",
+        "prebuild:ci": "npm install"
+      }
+  }
+  
