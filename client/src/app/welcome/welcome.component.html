@@ -1,14 +1,25 @@
-<mat-card [formGroup]="form">
-    <mat-card-header>
-      <mat-card-title>Welcome player</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-        <mat-form-field>
-            <mat-label>Enter your name</mat-label>
-            <input matInput formControlName="name">
-        </mat-form-field>
-    </mat-card-content>
-    <mat-card-actions>
-        <button mat-flat-button color="primary" (click)="enterGame()">Primary</button>
-    </mat-card-actions>
-  </mat-card>
+<div class="container">
+    <main>
+        <div class="header">
+            <img class="dices" src="../../assets/dices.svg" alt="">
+            <h1 class="title">Roll the dice</h1>
+        </div>
+
+        <div class="card">
+            <h3 class="welcome">Welcome player!</h3>
+    
+            <form [formGroup]="form" (ngSubmit)="enterGame()">
+                <label for="player">Please enter you name</label>
+                <input type="text" name="player" formControlName="name" placeholder="Player name" />
+                <small>* Your name is required!</small>
+    
+                <button type="submit" class="enter">Enter</button>
+            </form>
+        </div>
+
+    </main>
+    <footer>
+        <a href="https://github.com/eduardoleopoldino/roll-dice" target="_blank">Check out the source code</a><br />
+        Coded by Eduardo Souza
+    </footer>
+</div>

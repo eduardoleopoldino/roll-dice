@@ -1,0 +1,80 @@
+.container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .header {
+            display: flex;
+            align-items: center;
+            min-height: 200px;
+
+            .dices {
+                margin: 0 10px;
+            }
+
+            .title {
+                color: #fff;
+                font-family: 'Great Vibes', cursive;
+                font-size: 3rem;
+                text-shadow: 2px 2px 4px rgba($color: #000000, $alpha: .5);
+            }
+        }
+        
+    }
+
+    footer {
+        height: 70px;
+        text-align: center;
+
+        &, a {
+            color: #fff;
+            line-height: 28px;
+        }
+    }
+}
+
+.card {
+    background: #fff;
+    max-width: 360px;
+    padding: 40px;
+    box-shadow: 0 0 20px 0 rgb(0 0 0 / 20%), 0 10px 5px 0 rgb(0 0 0 / 24%);
+
+    .welcome {
+        font-family: 'Great Vibes', cursive;
+        font-size: 3rem;
+        margin: 5px 0;
+    }
+
+    input {
+        width: 100%;
+        height: 2rem;
+        font-size: 1.1rem;
+        padding: 0 10px;
+        background-color: #fcfcfc;
+        border: 1px solid #000;
+        border-radius: 0.5rem;
+        margin: 10px 0;
+    }
+
+    .enter {
+        width: 100%;
+        height: 3rem;
+        border: 0;
+        background-color: rgb(35, 169, 87);
+        text-transform: uppercase;
+        font-size: 1.2rem;
+        color: #fff;
+        cursor: pointer;
+        margin-top: 50px;
+
+        &:hover {
+            background-color: darken($color: rgb(35, 169, 87), $amount: 10);
+        }
+    }
+}
