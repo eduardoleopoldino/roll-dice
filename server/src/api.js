@@ -6,13 +6,19 @@ const router = express.Router();
 
 router.get("/", (req, res) => {
   res.json({
-    hello: "hello!"
+    statusCode: 200,
+    body: JSON.stringify({
+      message: `Hello default ${Math.floor(Math.random() * 10)}`
+    })
   });
 });
 
 router.get("/test", (req, res) => {
   res.json({
-    hello: "new test!"
+    statusCode: 200,
+    body: JSON.stringify({
+      message: `Hello world ${Math.floor(Math.random() * 10)}`
+    })
   });
 });
 

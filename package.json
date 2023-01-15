@@ -5,11 +5,7 @@
   "keywords": ["angular", "nodejs", "netlify"],
   "author": "Eduardo Souza",
   "license": "MIT",
-  "devDependencies": {
-    "concurrently": "^7.6.0"
-  },
   "scripts": {
-    "start": "concurrently \"npm run serve:client\" \"npm run serve:server\"",
     "serve:client": "cd client && npm start",
     "serve:server": "cd server && npm start",
     "build:client": "cd client && npm run build:ci",
