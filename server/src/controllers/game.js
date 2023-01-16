@@ -1,17 +1,16 @@
-const express = require('express')
-const router = express.Router()
-const fib = require("./fibonacci");
+const fib = require("../lib/fibonacci");
 
+// store game history in-memory
 const gameLog = [];
 
-router.get("/game-history", (_, res) => {
+const getHistory = ((req, res) => {
     res.json({
         statusCode: 200,
         data: gameLog
     });
 });
 
-router.post("/roll-dice", (req, res) => {
+const rollDice = ((req, res) => {
     const dice1 = getRandomNumber(1, 6);
     const dice2 = getRandomNumber(1, 6);
     const score = fib(dice1 + dice2);
@@ -33,7 +32,14 @@ router.post("/roll-dice", (req, res) => {
     });
 });
 
-function addHistory(data) {
+const updateScore = (data) => {
+    pusher.trigger("my-channel", "my-event", {
+        message: "hello world",
+        data
+    });
+}
+
+const addHistory = (data) => {
     console.log(data);
     
     const record = {
@@ -43,12 +49,16 @@ function addHistory(data) {
         date: Date.now()
     };
     gameLog.push(record);
+    updateScore(data);
 }
 
-function getRandomNumber(min, max) {
+const getRandomNumber = (min, max) => {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-module.exports = router
+module.exports = {
+    getHistory,
+    rollDice,
+}

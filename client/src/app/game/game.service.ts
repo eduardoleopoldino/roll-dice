@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { map } from "rxjs";
 
-const baseUrl = 'http://localhost:9000/.netlify/functions/api';
+const baseUrl = '/api';
 
 @Injectable({ providedIn: 'root' })
 export class GameService {
