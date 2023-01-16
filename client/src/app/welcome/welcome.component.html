@@ -10,8 +10,12 @@
     
             <form [formGroup]="form" (ngSubmit)="enterGame()">
                 <label for="player">Please enter you name</label>
-                <input type="text" name="player" formControlName="name" placeholder="Player name" />
-                <small>* Your name is required!</small>
+                <input type="text" name="player" formControlName="name" placeholder="Player name" autofocuss />
+                <ng-container *ngIf="name.invalid && (name.dirty || name.touched)">
+                    <small *ngIf="name.errors?.['required']">* Your name is required!</small>
+                    <small *ngIf="name.errors?.['minlength']">* Please enter at least 3 characters!</small>
+                    <small *ngIf="name.errors?.['maxlength']">* Please enter less than 8 characters!</small>
+                </ng-container>
     
                 <button type="submit" class="enter">Enter</button>
             </form>

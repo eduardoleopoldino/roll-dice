@@ -12,19 +12,19 @@
     <main>
         <h3>How to play</h3>
         <div class="card info">
-            Simply click on the button to roll the dices.<br />
-            Your score is based on the <a href="https://en.wikipedia.org/wiki/Fibonacci_number" target="_blank">fibonacci sequence</a>.<br />
+            Simply click on the button to roll the dices. <br />
+            The sum of the result will give your score.<br />
+            The score is based on the <a href="https://en.wikipedia.org/wiki/Fibonacci_number" target="_blank">fibonacci sequence</a>.<br />
         </div>
         <div class="card game">
-            <div class="game2"></div>
-            <button type="button" class="play" (click)="play()">Roll the dices</button>
+            <app-dices></app-dices>
         </div>
     </main>
     <aside>
         <h3>Score board</h3>
         <div class="card score">
-            <ul *ngFor="let history of texto">
-                <li>{{ history }}</li>
+            <ul>
+                <li *ngFor="let history of history$ | async">[{{ history.date | date: 'short' }}] Player {{ history.user }} rolled {{ history.roll }}. Score: {{ history.score }}</li>
             </ul>
         </div>        
     </aside>

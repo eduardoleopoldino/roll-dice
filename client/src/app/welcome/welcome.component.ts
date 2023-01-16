@@ -1,24 +1,33 @@
-import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AppService } from '../app.service';
 
 @Component({
   selector: 'app-welcome',
   templateUrl: './welcome.component.html',
   styleUrls: ['./welcome.component.scss']
 })
-export class WelcomeComponent {
-  
-  form = new FormGroup({
-    name: new FormControl('')
-  })
+export class WelcomeComponent implements OnInit {
+  form!: FormGroup;
 
-  constructor(private route: Router) {}
+  constructor(private route: Router, private appService: AppService) {}
+
+  ngOnInit(): void {
+    this.form = new FormGroup({
+      name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(8) ])
+    })
+  }
+
+  get name() { return this.form.get('name')!; }
 
   enterGame() {
-    console.log(this.form.value);
-    
+    if (!this.form.valid) { 
+      this.name.markAsDirty();
+      return;
+    }
 
+    this.appService.setName(this.name.value);
     this.route.navigate(['game'])
   }
 }

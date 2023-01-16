@@ -30,20 +30,9 @@ header {
         flex: 1;
 
         .game {
-            height: calc(100vh - 250px);
+            height: calc(100vh - 270px);
             margin: 20px 0;
-            background-color: #999;
-        }
-
-        .play {
-            width: 300px;
-            height: 50px;
-            color: #fff;
-            font-size: 1.3rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            border: 1px solid #666;
-            background-color: rgb(9, 83, 9);
+            background: linear-gradient(#545454, #454545, #676767);
         }
     }
 
@@ -53,9 +42,15 @@ header {
 
         .score {
             height: calc(100vh - 160px);
+            overflow: auto;
         
             ul {
                 list-style: none;
+
+                li {
+                    transform-origin: 50% 0;
+                    animation: new-item .2s linear;
+                }
             }
         }
     }
@@ -72,4 +67,15 @@ h3 {
     border-radius: 5px;
     background-color: #fff;
     padding: 15px;
+}
+
+@keyframes new-item {
+    from {
+        transform: scaleY(0);
+        opacity: 0;
+    }
+    to {
+        transform: scaleY(1);
+        opacity: 1;
+    }
 }

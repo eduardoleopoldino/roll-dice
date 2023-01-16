@@ -1,28 +1,17 @@
 const express = require("express");
+const bodyParser = require("body-parser");
+const cors = require("cors");
 const serverless = require("serverless-http");
+const game = require("./game");
 
 const app = express();
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.json({
-    statusCode: 200,
-    body: JSON.stringify({
-      message: `Hello default ${Math.floor(Math.random() * 10)}`
-    })
-  });
-});
+app.use(cors({ origin: "*" }));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
-router.get("/test", (req, res) => {
-  res.json({
-    statusCode: 200,
-    body: JSON.stringify({
-      message: `Hello world ${Math.floor(Math.random() * 10)}`
-    })
-  });
-});
-
-app.use(`/.netlify/functions/api`, router);
+app.use(`/.netlify/functions/api`, router, game);
 
 module.exports = app;
 module.exports.handler = serverless(app);

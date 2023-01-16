@@ -1,20 +1,22 @@
-import { Component } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { Observable, timer } from 'rxjs';
+import { GameService } from './game.service';
 
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.scss']
 })
-export class GameComponent {
-  texto: any = []
+export class GameComponent implements OnInit {
+  history$!: Observable<any>;
 
-  constructor() {
+  constructor(private gameService: GameService) { }
 
-  }
-
-  play() {
-    const text = '[15/01/2023 16:00:00] Player Eduardo rolled 6. Score: 18';
-    this.texto.push(text);
+  ngOnInit(): void {
+    // timer(5000, 3000).subscribe((ret) => {
+    //   console.log(111, ret);
+    //   // wait 5s, every 3s
+    // })
+    this.history$ = this.gameService.getHistory();
   }
 }
