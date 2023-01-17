@@ -71,5 +71,5 @@
             </li>
         </ol>
     </div>
-    <button type="button" class="play" (click)="rollDice()" [disabled]="isRolling">Play the game!</button>
+    <button type="button" class="play" (click)="rollDice()" [disabled]="isRolling$ | async">Play the game!</button>
 </div>

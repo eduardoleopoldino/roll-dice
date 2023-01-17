@@ -9,10 +9,10 @@ export class PusherService {
     channel: PusherTypes.Channel;
 
     constructor() {
+        Pusher.logToConsole = true;
         this._pusher = new Pusher(environment.pusherKey, {
             cluster: 'eu'
         });
-        Pusher.logToConsole = true;
         this.channel = this._pusher.subscribe('roll-dice');
     }
 

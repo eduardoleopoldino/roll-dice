@@ -10,7 +10,7 @@ app.use(cors({ origin: "*" }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use('/.netlify/functions/api', game_routes);
+app.use('/api', game_routes);
 
 module.exports = app;
 module.exports.handler = serverless(app);

@@ -1,4 +1,5 @@
 # ROLL DICE
+[![Netlify Status](https://api.netlify.com/api/v1/badges/bea08b53-80f0-4248-b527-89309609d5a7/deploy-status)](https://app.netlify.com/sites/roll-dice-demo/deploys)
 
 This game is a coding challenge with the following requirements.
 
@@ -7,12 +8,15 @@ This game is a coding challenge with the following requirements.
 2. The users should see what numbers were previously requested;
 3. The public history should be visible to any user opening the web-frontend;
 
+- Therefore, istead of just creating a simple page to input a number and return the value, I wanted to make something fun, so I decided to create a simple dice game, where given the result of the dices, the score will be calculated using the fibonacci sequence.
+
 ## Decisions
-- So istead of just creating a simple page to input a number and return the value, I wanted to make something fun, so I decided to create a simple dice game, where given the result of the dices, the score will be calculated using the fibonacci sequence.
 
-- First challenge was to host the app somewhere where I could run both the frontend and the backend. The chosen one was [Netlify](https://www.netlify.com/)
+- First challenge was to host the app somewhere where I could run both the frontend and the backend. The chosen one was [Netlify](https://www.netlify.com/).
 
-- The user should first enter a name in order to play and the score is updated in realtime using [Pusher](https://pusher.com/). Initially, the idea was to use websockets, but since netlify doesn´t support it.
+- The user should first enter a name before start the game.
+
+- The score is updated in realtime using [Pusher](https://pusher.com/) service. Initially, the idea was to use a websockets library, but, netlify functions doesn´t support it due to the serverless architecture.
 
 - The dice animation was copied from [here](https://codesandbox.io/s/xjk3xqnprw)
 

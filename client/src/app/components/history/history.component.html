@@ -1,8 +1,13 @@
 <h3>Score board</h3>
-<div class="card score">
-    <p>There are no items here yet. Start playing!</p>
-    <ul>
-        <li *ngFor="let history of history$">[{{ history.date | date: date_format }}] Player {{ history.user }} rolled {{
-            history.roll }}. Score: {{ history.score }}</li>
-    </ul>
+<div class="card score" #el>
+    <ng-template #NoItems>
+        <p>There are no items here yet. Start playing!</p>
+    </ng-template>
+    <ng-container *ngIf="history$ | async as history">
+        <ul *ngIf="history.length > 0; else NoItems">
+            <li *ngFor="let log of history">
+                [{{ log.date | date: date_format }}] Player {{ log.user }} rolled {{
+                log.roll }}. Score: {{ log.score }}</li>
+        </ul>
+    </ng-container>
 </div>

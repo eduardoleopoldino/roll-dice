@@ -29,7 +29,7 @@ const APP_ROUTES: Route[] = [
   imports: [
     BrowserModule,
     CommonModule,
-    RouterModule.forRoot(APP_ROUTES, { useHash: true }),
+    RouterModule.forRoot(APP_ROUTES),
     ReactiveFormsModule,
     HttpClientModule,
   ],

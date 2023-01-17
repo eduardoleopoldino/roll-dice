@@ -1,14 +1,15 @@
 const fib = require("../lib/fibonacci");
 const Pusher = require('pusher');
+require('dotenv').config();
 
 // store game history in-memory
 const gameLog = [];
 const pusher = new Pusher({
-    appId: "1539175",
-    key: "0f13f9521d4247a69f3d",
-    secret: "c8125996bf20aee6d50d",
+    appId: process.env.PUSHER_APPID,
+    key: process.env.PUSHER_KEY,
+    secret: process.env.PUSHER_SECRET,
     cluster: "eu",
-  });
+});
 
 const getHistory = ((req, res) => {
     res.json({
@@ -31,31 +32,41 @@ const rollDice = ((req, res) => {
     addHistory({
         user: req.body.user,
         ...data
-    });
-
-    res.json({
-        statusCode: 200,
-        data
-    });
+    }).then(
+        () => {
+            res.json({
+                statusCode: 200,
+                data,
+            });
+        },
+        (err) => {
+            res.json({
+                statusCode: 500,
+                message: 'Error',
+                errorDetails: err
+            });
+        }
+    );
 });
 
 const updateHistory = (data) => {
-    pusher.trigger("roll-dice", "update-history", {
+    return pusher.trigger("roll-dice", "update-history", {
         data
     });
 }
 
 const addHistory = (data) => {
     console.log(data);
-    
+
     const record = {
         user: data.user,
         roll: data.dice1 + data.dice2,
         score: data.score,
         date: Date.now()
     };
-    gameLog.push(record);
-    updateHistory(record);
+    gameLog.unshift(record);
+    
+    return updateHistory(record);
 }
 
 const getRandomNumber = (min, max) => {
