@@ -1,7 +1,14 @@
 const fib = require("../lib/fibonacci");
+const Pusher = require('pusher');
 
 // store game history in-memory
 const gameLog = [];
+const pusher = new Pusher({
+    appId: "1539175",
+    key: "0f13f9521d4247a69f3d",
+    secret: "c8125996bf20aee6d50d",
+    cluster: "eu",
+  });
 
 const getHistory = ((req, res) => {
     res.json({
@@ -32,9 +39,8 @@ const rollDice = ((req, res) => {
     });
 });
 
-const updateScore = (data) => {
-    pusher.trigger("my-channel", "my-event", {
-        message: "hello world",
+const updateHistory = (data) => {
+    pusher.trigger("roll-dice", "update-history", {
         data
     });
 }
@@ -49,7 +55,7 @@ const addHistory = (data) => {
         date: Date.now()
     };
     gameLog.push(record);
-    updateScore(data);
+    updateHistory(record);
 }
 
 const getRandomNumber = (min, max) => {

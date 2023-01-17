@@ -1,4 +1,4 @@
-header {
+.header {
     height: 70px;
     display: flex;
     justify-content: space-between;
@@ -17,6 +17,32 @@ header {
         text-shadow: 2px 2px 4px rgba($color: #000000, $alpha: .5);
         margin: 0;
         display: inline;
+    }
+
+    .right {
+        display: flex;
+        align-items: center;
+        margin-right: 15px;
+
+        .player {
+            color: #fff;
+            font-size: 1.3rem;
+            padding: 0 15px;
+        }
+
+        .leave {
+            height: 40px;
+            color: #fff;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 10px;
+            background-color: rgb(150, 11, 11);
+            padding: 10px;
+    
+            &:hover {
+                background-color: lighten($color: rgb(150, 11, 11), $amount: 10);
+            }
+        }
     }
 }
 
@@ -39,34 +65,7 @@ header {
     aside {
         padding: 10px;
         min-width: 500px;
-
-        .score {
-            height: calc(100vh - 160px);
-            overflow: auto;
-        
-            ul {
-                list-style: none;
-
-                li {
-                    transform-origin: 50% 0;
-                    animation: new-item .2s linear;
-                }
-            }
-        }
     }
-}
-
-h3 {
-    color: #fff;
-    font-family: 'Great Vibes', cursive;
-    font-size: 2rem;
-}
-
-.card {
-    border: 1px solid #666;
-    border-radius: 5px;
-    background-color: #fff;
-    padding: 15px;
 }
 
 @keyframes new-item {

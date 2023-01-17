@@ -1,6 +1,5 @@
 import { Component, ElementRef, Inject } from '@angular/core';
-import { AppService } from 'src/app/app.service';
-import { GameService } from 'src/app/game/game.service';
+import { GameService } from 'src/app/services/game.service';
 
 @Component({
   selector: 'app-dices',
@@ -10,7 +9,7 @@ import { GameService } from 'src/app/game/game.service';
 export class DicesComponent {
   isRolling = false;
 
-  constructor(private elRef: ElementRef, private appService: AppService, private gameService: GameService) { }
+  constructor(private elRef: ElementRef, private gameService: GameService) { }
 
   toggleClasses(die: any) {
     die.classList.toggle("odd-roll");
@@ -21,13 +20,11 @@ export class DicesComponent {
     this.isRolling = true;
     const dices = [...this.elRef.nativeElement.querySelectorAll(".die-list")];
 
-
     const data = {
-      user: this.appService.getName(),
+      user: sessionStorage.getItem('playerName')
     };
 
     this.gameService.rollDice(data).subscribe((ret: any) => {
-      console.log(ret);
       this.toggleClasses(dices[0]);
       this.toggleClasses(dices[1]);
       dices[0].dataset.roll = ret.data.dice1;

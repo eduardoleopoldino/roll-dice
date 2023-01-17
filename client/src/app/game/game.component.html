@@ -1,13 +1,13 @@
-<header>
+<div class="header">
     <div class="logo">
         <img class="dices" src="../../assets/dices.svg" alt="">
         <h1 class="title">Roll the dice</h1>
     </div>
-    <!-- <div class="right">
-        <span class="player">Hello Player!</span>
-        <button type="button">Leave game</button>
-    </div> -->
-</header>
+    <div class="right">
+        <span class="player">Welcome {{ name }}!</span>
+        <button class="leave" type="button" (click)="leaveGame()">Leave game</button>
+    </div>
+</div>
 <div class="container">
     <main>
         <h3>How to play</h3>
@@ -21,11 +21,6 @@
         </div>
     </main>
     <aside>
-        <h3>Score board</h3>
-        <div class="card score">
-            <ul>
-                <li *ngFor="let history of history$ | async">[{{ history.date | date: 'short' }}] Player {{ history.user }} rolled {{ history.roll }}. Score: {{ history.score }}</li>
-            </ul>
-        </div>        
+        <app-history></app-history>      
     </aside>
 </div>

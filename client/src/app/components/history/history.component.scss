@@ -1,0 +1,13 @@
+.score {
+    height: calc(100vh - 160px);
+    overflow: auto;
+
+    ul {
+        list-style: none;
+
+        li {
+            transform-origin: 50% 0;
+            animation: new-item .2s linear;
+        }
+    }
+}

@@ -1,1 +1,8 @@
-<p>history works!</p>
+<h3>Score board</h3>
+<div class="card score">
+    <p>There are no items here yet. Start playing!</p>
+    <ul>
+        <li *ngFor="let history of history$">[{{ history.date | date: date_format }}] Player {{ history.user }} rolled {{
+            history.roll }}. Score: {{ history.score }}</li>
+    </ul>
+</div>

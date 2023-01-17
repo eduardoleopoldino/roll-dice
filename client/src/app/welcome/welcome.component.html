@@ -1,5 +1,5 @@
 <div class="container">
-    <main>
+    <div class="main">
         <div class="header">
             <img class="dices" src="../../assets/dices.svg" alt="">
             <h1 class="title">Roll the dice</h1>
@@ -17,13 +17,13 @@
                     <small *ngIf="name.errors?.['maxlength']">* Please enter less than 8 characters!</small>
                 </ng-container>
     
-                <button type="submit" class="enter">Enter</button>
+                <button type="submit" class="btn-enter">Enter</button>
             </form>
         </div>
 
-    </main>
-    <footer>
+    </div>
+    <div class="footer">
         <a href="https://github.com/eduardoleopoldino/roll-dice" target="_blank">Check out the source code</a><br />
         Coded by Eduardo Souza
-    </footer>
+    </div>
 </div>

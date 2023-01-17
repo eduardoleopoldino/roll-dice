@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AppService } from '../app.service';
 
 @Component({
   selector: 'app-welcome',
@@ -11,7 +10,7 @@ import { AppService } from '../app.service';
 export class WelcomeComponent implements OnInit {
   form!: FormGroup;
 
-  constructor(private route: Router, private appService: AppService) {}
+  constructor(private route: Router) {}
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -27,7 +26,7 @@ export class WelcomeComponent implements OnInit {
       return;
     }
 
-    this.appService.setName(this.name.value);
+    sessionStorage.setItem('playerName', this.name.value);
     this.route.navigate(['game'])
   }
 }
