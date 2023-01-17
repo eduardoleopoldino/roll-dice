@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component, ElementRef, Inject } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { BaseApi } from 'src/app/models/base-api.model';
+import { RollDicePayload } from 'src/app/models/rolldice.payload';
 import { GameService } from 'src/app/services/game.service';
 
 @Component({
@@ -13,24 +15,24 @@ export class DicesComponent {
 
   constructor(private elRef: ElementRef, private gameService: GameService) { }
 
-  toggleClasses(die: any) {
+  toggleClasses(die: HTMLOListElement) {
     die.classList.toggle("odd-roll");
     die.classList.toggle("even-roll");
   }
 
   rollDice() {
     this.isRolling$.next(true);
-    const dices = [...this.elRef.nativeElement.querySelectorAll(".die-list")];
+    const dices: HTMLOListElement[] = [...this.elRef.nativeElement.querySelectorAll(".die-list")];
 
     const data = {
-      user: sessionStorage.getItem('playerName')
+      user: sessionStorage.getItem('playerName') || ''
     };
 
-    this.gameService.rollDice(data).subscribe((ret: any) => {
+    this.gameService.rollDice(data).subscribe((ret: BaseApi<any>) => {
       this.toggleClasses(dices[0]);
       this.toggleClasses(dices[1]);
-      dices[0].dataset.roll = ret.data.dice1;
-      dices[1].dataset.roll = ret.data.dice2;
+      dices[0].dataset['roll'] = ret.data.dice1;
+      dices[1].dataset['roll'] = ret.data.dice2;
       this.isRolling$.next(false);
     });
 
